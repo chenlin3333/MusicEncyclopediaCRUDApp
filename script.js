@@ -1,3 +1,10 @@
+var pg = require('pg');
+var connectionString = "postgres://postgres:Pps13564*@Servers/ip:5432/MusicEncyclopediaDB";
+var pgClient = new pg.Client(connectionString);
+pgClient.connect();
+var query = pgClient.query("SELECT id from Customer where name = 'customername'");
+
+
 var selectedRow = null
 
 function onFormSubmit() {
@@ -15,7 +22,7 @@ function onFormSubmit() {
 
 function readFormData() {
     var formData = {};
-    formData["fullName"] = document.getElementById("fullName").value;
+    formData["userName"] = document.getElementById("userName").value;
     formData["empCode"] = document.getElementById("empCode").value;
     formData["salary"] = document.getElementById("salary").value;
     formData["city"] = document.getElementById("city").value;
@@ -69,14 +76,14 @@ function onDelete(td) {
 }
 function validate() {
     isValid = true;
-    if (document.getElementById("fullName").value == "") {
+    if (document.getElementById("userName").value == "") {
         isValid = false;
-        document.getElementById("fullNameValidationError").classList.remove("hide");
+        document.getElementById("userNameValidationError").classList.remove("hide");
     } 
     else {
         isValid = true;
-        if (!document.getElementById("fullNameValidationError").classList.contains("hide")){
-            document.getElementById("fullNameValidationError").classList.add("hide");
+        if (!document.getElementById("userNameValidationError").classList.contains("hide")){
+            document.getElementById("userNameValidationError").classList.add("hide");
         }
     }
     return isValid;

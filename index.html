@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        Html CRUD with Pure JavaScript
+        Music Encyclopedia
     </title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -14,23 +14,15 @@
             <td>
                 <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
                     <div>
-                        <label>Full Name*</label><label class="validation-error hide" id="fullNameValidationError">This field is required.</label>
-                        <input type="text" name="fullName" id="fullName">
+                        <label>Username</label><label class="validation-error hide" id="userNameValidationError">This field is required.</label>
+                        <input type="text" name="userName" id="userName">
                     </div>
                     <div>
-                        <label>EMP Code</label>
+                        <label>Password</label>
                         <input type="text" name="empCode" id="empCode">
                     </div>
-                    <div>
-                        <label>Salary</label>
-                        <input type="text" name="salary" id="salary">
-                    </div>
-                    <div>
-                        <label>City</label>
-                        <input type="text" name="city" id="city">
-                    </div>
                     <div  class="form-action-buttons">
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="Sign In">
                     </div>
                 </form>
             </td>
