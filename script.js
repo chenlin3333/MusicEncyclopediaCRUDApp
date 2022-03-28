@@ -1,10 +1,3 @@
-var pg = require('pg');
-var connectionString = "postgres://postgres:Pps13564*@Servers/ip:5432/MusicEncyclopediaDB";
-var pgClient = new pg.Client(connectionString);
-pgClient.connect();
-var query = pgClient.query("SELECT id from Customer where name = 'customername'");
-
-
 var selectedRow = null
 
 function onFormSubmit() {
