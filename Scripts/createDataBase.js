@@ -1,3 +1,4 @@
+//establish connection to postgres database
 const pg = require('pg');
 const db = new pg.Pool({
  host: '127.0.0.1',
@@ -18,6 +19,8 @@ const userComposition = "userComposition"
 const compositionGenre = "compositionGenre"
 const musicCollectionComposition = "musicCollectionComposition"
 
+
+// Creates all the relation tables that the database needs
 try{
     db.query(`CREATE TABLE IF NOT EXISTS ${user} 
         (userID INT PRIMARY KEY,

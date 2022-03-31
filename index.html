@@ -12,14 +12,14 @@
     <table>
         <tr>
             <td>
-                <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+                <form onsubmit="event.preventDefault();onSignIn();" autocomplete="off">
                     <div>
-                        <label>Username</label><label class="validation-error hide" id="userNameValidationError">This field is required.</label>
+                        <label>Username</label><label class="validation-error hide" id="signInValidationError">An username and password are required.</label>
                         <input type="text" name="userName" id="userName">
                     </div>
                     <div>
                         <label>Password</label>
-                        <input type="text" name="empCode" id="empCode">
+                        <input type="text" name="passWord" id="passWord">
                     </div>
                     <div  class="form-action-buttons">
                         <input type="submit" value="Sign In">

@@ -1,24 +1,16 @@
-var selectedRow = null
-
-function onFormSubmit() {
+function onSignIn() {
     if (validate()) {
         var formData = readFormData();
-        if (selectedRow == null){
-            insertNewRecord(formData);
-        }
-        else{
-            updateRecord(formData);
-        }
-        resetForm();
+        Console.log(formData["userName"]);
+        Console.log(formData["passWord"]);
+        
     }
 }
 
 function readFormData() {
     var formData = {};
     formData["userName"] = document.getElementById("userName").value;
-    formData["empCode"] = document.getElementById("empCode").value;
-    formData["salary"] = document.getElementById("salary").value;
-    formData["city"] = document.getElementById("city").value;
+    formData["passWord"] = document.getElementById("passWord").value;
     return formData;
 }
 
@@ -67,16 +59,17 @@ function onDelete(td) {
         resetForm();
     }
 }
+
 function validate() {
     isValid = true;
-    if (document.getElementById("userName").value == "") {
+    if (document.getElementById("userName").value == "" || document.getElementById("passWord").value == "") {
         isValid = false;
-        document.getElementById("userNameValidationError").classList.remove("hide");
+        document.getElementById("signInValidationError").classList.remove("hide");
     } 
     else {
         isValid = true;
-        if (!document.getElementById("userNameValidationError").classList.contains("hide")){
-            document.getElementById("userNameValidationError").classList.add("hide");
+        if (!document.getElementById("signInValidationError").classList.contains("hide")){
+            document.getElementById("signInValidationError").classList.add("hide");
         }
     }
     return isValid;
