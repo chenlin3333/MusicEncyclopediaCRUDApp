@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Register
+    </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <b>Choose an username and password.</b>
+                <form onsubmit="event.preventDefault();onRegister();" autocomplete="off">
+                    <div>
+                        <label>Username</label><label class="validation-error hide" id="signInValidationError">An username and password are required.</label>
+                        <input type="text" name="userName" id="userName">
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input type="text" name="passWord" id="passWord">
+                    </div>
+                    <input type="submit" value="Register">
+                </form>
+            </td>
+        </tr>
+    </table>
+    <script src="script.js"></script>
+</body>
+
+</html>
