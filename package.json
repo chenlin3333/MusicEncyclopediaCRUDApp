@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "pg": "^8.7.3"
+  },
+  "name": "musicencyclopediacrudapp",
+  "version": "1.0.0",
+  "main": "script.js",
+  "compilerOptions": {
+    "module": "script.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenlin3333/MusicEncyclopediaCRUDApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chenlin3333/MusicEncyclopediaCRUDApp/issues"
+  },
+  "homepage": "https://github.com/chenlin3333/MusicEncyclopediaCRUDApp#readme",
+  "description": ""
+}

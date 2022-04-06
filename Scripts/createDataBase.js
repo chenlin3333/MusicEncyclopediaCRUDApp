@@ -1,6 +1,6 @@
 //establish connection to postgres database
-const pg = require('pg');
-const db = new pg.Pool({
+import { Pool } from 'pg';
+const db = new Pool({
  host: '127.0.0.1',
  database: 'MusicEncyclopediaDB',
  user: 'postgres',
@@ -74,4 +74,3 @@ catch (err){
     console.error(err);
     db.end();
 }
-
