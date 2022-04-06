@@ -1,22 +1,22 @@
-function onSignIn() {
+"use strict";
+
+import * as SQL from "./SqlQueries.js";
+
+export function onSignIn() {
     if (validate()) {
-        var formData = readFormData();
-        Console.log(formData["userName"]);
-        Console.log(formData["passWord"]);
+        var userName = document.getElementById("userName").value;
+        var passWord = document.getElementById("passWord").value;
+        db.query();
+        SQL.isUserValid(userName, passWord);
+        
         
     }
 }
 
-function onRegister(){
+export function onRegister(){
     if (validate()){
-
+        
     }
-}
-function readFormData() {
-    var formData = {};
-    formData["userName"] = document.getElementById("userName").value;
-    formData["passWord"] = document.getElementById("passWord").value;
-    return formData;
 }
 
 /**
@@ -24,7 +24,7 @@ function readFormData() {
  * @returns True if valid, false otherwise
  */
 function validate() {
-    isValid = true;
+    var isValid = true;
     if (document.getElementById("userName").value == "" || document.getElementById("passWord").value == "") {
         isValid = false;
         document.getElementById("signInValidationError").classList.remove("hide");
