@@ -7,17 +7,20 @@ export function onSignIn() {
         var userName = document.getElementById("userName").value;
         var passWord = document.getElementById("passWord").value;
         db.query();
-        SQL.isUserValid(userName, passWord);
+        //SQL.isUserValid(userName, passWord);
         
         
     }
 }
 
 export function onRegister(){
-    if (validate()){
-        
+    var userName = document.getElementById("userName").value;
+    var passWord = document.getElementById("passWord").value;
+    if (validate() && !SQL.userExists(userName, passWord)){
+
     }
 }
+
 
 /**
  * Checks to see if the supplied username and password is not empty and are valid
