@@ -6,20 +6,13 @@ block content
         .modal-content
           // Modal Header
           .modal-header
-            p
-              | Please Sign In or Register for an Account.
-            p= description
           // Modal Body
           .modal-body
-            form(role='form' method='POST' action='/')
+            form(role='form' method='POST' action='/register')
               div.form-group
                 label(for='Username') Username:
                 input#name.form-control(type='text', placeholder='Username' name='Username')
               div.form-group
                 label(for='Password') Password:
                 input#email.form-control(type='Password', placeholder='Password' name='Password')
-              button.btn.btn-primary(type="submit", name="Login") Login
-            form(method='GET' action='/register')
               button.btn.btn-primary(type="submit", name="Register") Register
-
-
