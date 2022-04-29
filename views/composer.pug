@@ -1,0 +1,11 @@
+extends layout.pug
+
+block content
+  h1= "Composer Creation"
+    form(action="/composer" method="Post")
+    p Composer Name:   
+        input(type="text" name="name" placeholder="")
+    p Biography:
+        p 
+        textarea(name="bio", cols="30", rows="10") 
+    input(type="submit")

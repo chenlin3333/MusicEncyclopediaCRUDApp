@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const db = require('../public/javascripts/db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Music Encyclopedia'});
+  res.render('index', {});
 });
 
 router.post('/', async function(req, res, next) {
@@ -17,7 +17,7 @@ router.post('/', async function(req, res, next) {
     where username = '${userName}' and password = '${passWord}'`);
 
   if(result[0].count == '1'){
-    res.render('index', {title: 'Signed In!', description: `Logged in as ${userName}`});
+    res.render('userpage', {user: `Logged in as ${userName}`});
   }
   else{
     res.render('index', {description: 'Incorrect Password or Username. Try Again.'});
@@ -26,7 +26,7 @@ router.post('/', async function(req, res, next) {
 });
 
 router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Please create an username and password.'});
+  res.render('register', {});
 });
 
 router.post('/register', async function(req, res, next) {
@@ -49,11 +49,15 @@ router.post('/register', async function(req, res, next) {
     await pgClient.query(`
       insert into users(userid, username, password)
       values(${nextId}, '${userName}', '${passWord}')`);
-      res.render('index', { title: 'Account Created'});
+      res.render('index', { desciption: 'Account Created'});
   }
   else{
-    res.render('register', { title: 'That username already exists.'});
+    res.render('register', { description: 'That username already exists.'});
   }
+});
+
+router.get('/composer', function(req, res, next) {
+  res.render('composer', { title: 'Please create an username and password.'});
 });
 
 module.exports = router;
