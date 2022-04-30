@@ -9,8 +9,12 @@ block content
         div
             a(href='/composer') Add a Composer!
         div
-            a(href='/register') Create a new Music Collection!
-        div
             a(href='/register') View your Music Collections!
-
+        
+        form(role='form' method='POST' action='/createCollection')
+            div.form-group
+                label(for='collectionName') Create a new Music Collection:
+                input#name.form-control(type='text', placeholder='Collection Name', name='name')
+                button.btn.btn-primary(type="submit", name="create") Create
+            em=creationResult
 

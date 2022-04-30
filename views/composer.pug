@@ -2,10 +2,14 @@ extends layout.pug
 
 block content
   h1= "Composer Creation"
-    form(action="/composer" method="Post")
-    p Composer Name:   
-        input(type="text" name="name" placeholder="")
-    p Biography:
-        p 
-        textarea(name="bio", cols="30", rows="10") 
-    input(type="submit")
+    em=result
+    .modal-body
+        form(role='form' method='POST' action='/composer')
+            div.form-group
+                label(for='name') Composer Name:
+                input#name.form-control(type='text',name='name')
+            div.form-group
+                label(for='Password') Biography:
+                textarea(name="bio", cols="30", rows="10") 
+            button.btn.btn-primary(type="submit", name="create") Create
+    a(href="/userpage"): button(type="button") Back to Homepage
