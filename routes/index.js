@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pgClient = require('../public/javascripts/db').db;
 var currentUser;
+var userId;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -18,6 +19,11 @@ router.post('/', async function(req, res, next) {
 
   if(result[0].count == '1'){
     currentUser = userName
+    userId = await pgClient.query(`
+      select userid
+      from users
+      where username = '${userName}'`);
+    userId = userId[0].userid;
     res.render('userpage', {user: `Logged in as ${currentUser}`});
   }
   else{
@@ -88,9 +94,30 @@ router.post('/composer', async function(req, res, next) {
   
 });
 
-router.post('/createCollection', function(req, res, next) {
+router.post('/createCollection', async function(req, res, next) {
   var name = req.body.name;
-  res.render('userpage', { user: `Logged in as ${currentUser}`, creationResult: 'success!'});
+  var dupCheck = await pgClient.query(`
+    select count(*)
+    from musiccollection m, users u
+    where m.userid = u.userid and u.userid = ${userId} and m.name = '${name}'`);
+
+  if(dupCheck[0].count == '0'){
+    var latestId = await pgClient.query(`
+      select musiccollectionid
+      from musiccollection
+      order by musiccollectionid desc
+      limit 1`);
+    var nextId = latestId[0].musiccollectionid + 1;
+
+    await pgClient.query(`
+    insert into musiccollection(musiccollectionid, name, userid)
+    values(${nextId}, '${name}', ${userId})`)
+
+    res.render('userpage', { user: `Logged in as ${currentUser}`, creationResult: 'success!'});
+  }
+  else{
+    res.render('userpage', { user: `Logged in as ${currentUser}`, creationResult: 'This collection already exists!'});
+  }
 });
 
 
