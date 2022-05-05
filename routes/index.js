@@ -4,6 +4,7 @@ const pgClient = require('../public/javascripts/db').db;
 var currentUser;
 var userId;
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {});
@@ -120,7 +121,15 @@ router.post('/createCollection', async function(req, res, next) {
   }
 });
 
+router.get('/musicCollection', async function(req, res, next){
+  var result = await pgClient.query(`
+    select name
+    from musiccollection m, users u
+    where m.userid = u.userid and u.userid = ${userId}`);
 
+  console.log(result);
+  res.render('musicCollection', { musicCollection: result});
+});
 
 router.get('/userpage', function(req, res, next) {
   res.render('userpage', { user: `Logged in as ${currentUser}`});

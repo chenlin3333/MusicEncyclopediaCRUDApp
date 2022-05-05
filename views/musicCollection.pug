@@ -1,0 +1,9 @@
+extends layout.pug
+
+block content
+    p Your Music Collections
+        ul
+        each collection in musicCollection
+            form(role='form' method='GET' action='/register')
+                button.btn.btn-primary(type="submit", name=collection.name) #{collection.name}
+                
