@@ -131,6 +131,53 @@ router.get('/musicCollection', async function(req, res, next){
   res.render('musicCollection', { musicCollection: result});
 });
 
+router.get('/composition', async function(req, res, next){
+  res.render('composition', {});
+});
+
+router.post('/createComposition', async function(req, res, next) {
+  var title = req.body.title
+  var date = req.body.releasedDate
+  var length = req.body.length
+  var composer = req.body.composer
+  
+  var checkComposer = await pgClient.query(`
+    select count(*)
+    from composer
+    where name = '${composer}'`);
+
+  var dupCheck = await pgClient.query(`
+    select count(*)
+    from composition c
+    where c.title = '${title}'`);
+
+  if(dupCheck[0].count == '0' && checkComposer[0].count == '1'){
+    var composerid = await pgClient.query(`
+      select composerid
+      from composer c
+      where c.name = '${composer}'`)
+
+    var latestId = await pgClient.query(`
+      select compositionid
+      from composition
+      order by compositionid desc
+      limit 1`);
+    var nextId = latestId[0].compositionid + 1;
+
+    await pgClient.query(`
+      insert into composition(compositionid, title, releaseddate, length, composerid)
+      values(${nextId}, '${title}', '${date}', ${length}, ${composerid[0].composerid})`)
+
+    res.render('composition', { creationResult: 'success!'});
+  }
+  else if(dupCheck[0].count != '0'){
+    res.render('composition', { creationResult: 'A composition of this name already exists!'});
+  }
+  else{
+    res.render('composition', { creationResult: 'The specified composer does not exist! Create this composer first.'});
+  }
+});
+
 router.get('/userpage', function(req, res, next) {
   res.render('userpage', { user: `Logged in as ${currentUser}`});
 });

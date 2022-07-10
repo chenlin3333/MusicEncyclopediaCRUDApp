@@ -1,0 +1,22 @@
+extends layout.pug
+
+block content
+    p= "Composition Creation"
+    body
+        form(role='form' method='POST' action='/createComposition')
+            div
+                label(for='title') Title
+                input#name.form-control(type='text', name='title')
+            div
+                label(for='releasedDate') Date Composed
+                input#name.form-control(type='text', placeholder='mm/dd/yyyy', name='releasedDate')
+            div
+                label(for='length') Length(in minutes)
+                input#name.form-control(type='text', name='length')
+            div
+                label(for='composer') Composer
+                input#name.form-control(type='text', name='composer')
+            div
+                button.btn.btn-primary(type="submit", name="create") Create
+            em=creationResult
+        
